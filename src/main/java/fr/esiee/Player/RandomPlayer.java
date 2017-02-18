@@ -6,9 +6,16 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 /**
- * Created by jeremyfornarino on 17/02/2017.
+ *****************************************************
+ * ,----.     E3T - Esiee Paris      ,--.            *
+ * '  .-./    ,---. ,--,--,--. ,---. |  |,-.,--.,--. *
+ * |  | .---.| .-. ||        || .-. ||     /|  ||  | *
+ * '  '--'  |' '-' '|  |  |  |' '-' '|  \  \'  ''  ' *
+ * `------'  `---' `--`--`--' `---' `--'`--'`------' *
+ *    Alexandre Causse            Jérémy Fornarino   *
+ *****************************************************
+ * @author Alexandre Causse & Jérémy Fornarino   [E3T]
  */
 public class RandomPlayer extends IA{
     public RandomPlayer(String name, Color color) {

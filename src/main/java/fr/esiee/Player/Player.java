@@ -2,9 +2,16 @@ package fr.esiee.Player;
 
 import fr.esiee.Board;
 import javafx.scene.paint.Color;
-
 /**
- * Created by jeremyfornarino on 16/02/2017.
+ *****************************************************
+ * ,----.     E3T - Esiee Paris      ,--.            *
+ * '  .-./    ,---. ,--,--,--. ,---. |  |,-.,--.,--. *
+ * |  | .---.| .-. ||        || .-. ||     /|  ||  | *
+ * '  '--'  |' '-' '|  |  |  |' '-' '|  \  \'  ''  ' *
+ * `------'  `---' `--`--`--' `---' `--'`--'`------' *
+ *    Alexandre Causse            Jérémy Fornarino   *
+ *****************************************************
+ * @author Alexandre Causse & Jérémy Fornarino   [E3T]
  */
 public abstract class Player {
     public static final int DEPTH = 4;

@@ -1,11 +1,19 @@
 package fr.esiee;
-
 import fr.esiee.Player.Player;
 import javafx.beans.property.SimpleObjectProperty;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ *****************************************************
+ * ,----.     E3T - Esiee Paris      ,--.            *
+ * '  .-./    ,---. ,--,--,--. ,---. |  |,-.,--.,--. *
+ * |  | .---.| .-. ||        || .-. ||     /|  ||  | *
+ * '  '--'  |' '-' '|  |  |  |' '-' '|  \  \'  ''  ' *
+ * `------'  `---' `--`--`--' `---' `--'`--'`------' *
+ *    Alexandre Causse            Jérémy Fornarino   *
+ *****************************************************
+ * @author Alexandre Causse & Jérémy Fornarino   [E3T]
+ */
 public class Board {
 
     public final static int MAXPOINT = 1000;

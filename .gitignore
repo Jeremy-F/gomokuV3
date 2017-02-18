@@ -1,3 +1,14 @@
+#**
+ #*****************************************************
+ #* ,----.     E3T - Esiee Paris      ,--.            *
+ #* '  .-./    ,---. ,--,--,--. ,---. |  |,-.,--.,--. *
+ #* |  | .---.| .-. ||        || .-. ||     /|  ||  | *
+ #* '  '--'  |' '-' '|  |  |  |' '-' '|  \  \'  ''  ' *
+ #* `------'  `---' `--`--`--' `---' `--'`--'`------' *
+ #*    Alexandre Causse            Jérémy Fornarino   *
+ #*****************************************************
+ #* @author Alexandre Causse & Jérémy Fornarino   [E3T]
+ #*/
 # Created by .ignore support plugin (hsz.mobi)
 ### Example user template template
 ### Example user template
@@ -20,5 +31,7 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+settings.gradle
