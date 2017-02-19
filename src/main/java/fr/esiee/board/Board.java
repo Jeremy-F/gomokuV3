@@ -222,6 +222,16 @@ public class Board {
 
         return null;
     }
+    public int winnerIndex(){
+        for(int i = 0; i < this.getAllAlignment().size(); i++){
+            Alignment alignment  = this.getAllAlignment().get(i);
+            Player winner = alignment.earnedBy();
+            if(winner != null){
+                return i;
+            }
+        }
+        return -1;
+    }
     /**
      *
      * @return
@@ -347,11 +357,11 @@ public class Board {
             long debut = System.currentTimeMillis();
             this.getCurrentPlayer().play(this);
 
-        }
+        }/*
         System.out.println(this);
         System.out.println("And the winner is : "+this.whoWon());
         System.out.println("Score for "+this.getPlayer(0) + " : "+this.scoreFor(this.getPlayer(0)));
-        System.out.println("Score for "+this.getPlayer(1) + " : "+this.scoreFor(this.getPlayer(1)));
+        System.out.println("Score for "+this.getPlayer(1) + " : "+this.scoreFor(this.getPlayer(1)));*/
     }
     /*************************************************************************
      *                                                                       *
@@ -401,5 +411,36 @@ public class Board {
             }
         }
         return total;
+    }
+    public long totalTimeFor(int indexPlayer){
+        long total = 0;
+        for(Movement movement : this.getMovementsStory()){
+            long executionTime = movement.getExecutionTime();
+            if(movement.getPlayerIndex() == indexPlayer && executionTime >= 0){
+                total += executionTime;
+            }
+        }
+        return total;
+    }
+    public long averageTimeFor(int indexPlayer){
+        return totalTimeFor(indexPlayer) / this.getNumberOfMove();
+    }
+    /*************************************************************************
+     *                                                                       *
+     *                               CSV Report                              *
+     *                                                                       *
+     *************************************************************************/
+    public String toCSVLine(){
+        String player1 = this.getPlayer(0).getClass().toString();
+        player1 = player1.substring(25, player1.length());
+        String player2 = this.getPlayer(1).getClass().toString();
+        player2 = player2.substring(25, player2.length());
+        return ""+player1 +","+
+                            player2 +","+
+                            this.getNumberOfMove()+","+Player.DEPTH+","+
+                            this.winnerIndex()+","+
+                            this.averageTimeFor(0)+","+
+                            this.averageTimeFor(1);
+
     }
 }

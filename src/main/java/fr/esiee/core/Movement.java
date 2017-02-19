@@ -68,4 +68,8 @@ public class Movement {
         result = 31 * result + playerIndex;
         return result;
     }
+
+    public long getExecutionTime() {
+        return executionTime;
+    }
 }
