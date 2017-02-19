@@ -1,5 +1,8 @@
-package fr.esiee;
-import fr.esiee.Player.Player;
+package fr.esiee.board;
+import fr.esiee.GameIHM;
+import fr.esiee.core.Alignment;
+import fr.esiee.core.Movement;
+import fr.esiee.player.Player;
 import javafx.beans.property.SimpleObjectProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +21,7 @@ public class Board {
 
     public final static int MAXPOINT = 1000;
     public final static int MINPOINT = -1000;
-    private final Game game;
+    private final GameIHM game;
 
 
     private Player[] players = new Player[2];
@@ -34,7 +37,7 @@ public class Board {
     public Board(int size, int nbAlignedBoxesForWin, Player player1, Player player2) {
         this(null, size, nbAlignedBoxesForWin, player1, player2);
     }
-    public Board(Game game, int size, int nbAlignedBoxesForWin, Player player1, Player player2) {
+    public Board(GameIHM game, int size, int nbAlignedBoxesForWin, Player player1, Player player2) {
         this.game = game;
         this.nbAlignedBoxesForWin = nbAlignedBoxesForWin;
         this.boxes = new ArrayList<SimpleObjectProperty<Box>>();
@@ -262,7 +265,7 @@ public class Board {
     }
     /*************************************************************************
      *                                                                       *
-     *                              Current Player                           *
+     *                              Current player                           *
      *                                                                       *
      *************************************************************************/
      public int getCurrentIndexPlayer(){
@@ -279,7 +282,7 @@ public class Board {
 
     /*************************************************************************
      *                                                                       *
-     *                               Next Player                             *
+     *                               Next player                             *
      *                                                                       *
      *************************************************************************/
     public int getNextIndexPlayer(){
@@ -319,13 +322,14 @@ public class Board {
      *                                                                       *
      *************************************************************************/
     public void play(int line, int column) {
+        play(line,column,-1);
+    }
+    public void play(int line, int column, long executionTime){
         if(!this.isFinished()) {
             Box box = this.getBox(line,column);
-            //System.out.println(box);
-            //System.out.println(this.getCurrentPlayer());
             if(!box.hasOwner()){
                 box.setOwner(this.getCurrentPlayer());
-                this.addMovement(line, column);
+                this.addMovement(line, column, executionTime);
             }
         }else{
             System.out.println(this);
@@ -356,7 +360,7 @@ public class Board {
             this.getCurrentPlayer().play(this);
 
         }
-        System.out.println(this.toStringBoxes());
+        System.out.println(this);
         System.out.println("And the winner is : "+this.whoWon());
         System.out.println("Score for "+this.getPlayer(0) + " : "+this.scoreFor(this.getPlayer(0)));
         System.out.println("Score for "+this.getPlayer(1) + " : "+this.scoreFor(this.getPlayer(1)));
@@ -387,8 +391,8 @@ public class Board {
     public int getNumberOfMove(){
         return this.getMovementsStory().size();
     }
-    private void addMovement(int line, int column) {
-        Movement movement = new Movement(line, column, this.getCurrentIndexPlayer());
+    private void addMovement(int line, int column, long executionTime) {
+        Movement movement = new Movement(line, column, this.getCurrentIndexPlayer(), executionTime);
         this.getMovementsStory().add(movement);
     }
     private void removeLastMovement() {

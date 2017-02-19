@@ -1,7 +1,8 @@
-package fr.esiee.Player;
+package fr.esiee.player.ia;
 
-import fr.esiee.Board;
-import fr.esiee.Box;
+import fr.esiee.board.Board;
+import fr.esiee.board.Box;
+import fr.esiee.player.Player;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;

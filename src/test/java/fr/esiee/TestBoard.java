@@ -1,9 +1,13 @@
 package fr.esiee;
 
 
-import fr.esiee.Player.Player;
-import fr.esiee.Player.RandomPlayer;
-import fr.esiee.Player.MaxScorePlayer;
+import fr.esiee.player.*;
+import fr.esiee.board.Board;
+import fr.esiee.board.Box;
+import fr.esiee.core.Alignment;
+import fr.esiee.core.Movement;
+import fr.esiee.player.ia.MaxScorePlayer;
+import fr.esiee.player.ia.RandomPlayer;
 import javafx.scene.paint.Color;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,8 @@
-package fr.esiee.Player;
+package fr.esiee.player.ia;
 
-import fr.esiee.Board;
-import fr.esiee.Box;
+import fr.esiee.board.Board;
+import fr.esiee.board.Box;
+import fr.esiee.player.Player;
 import javafx.scene.paint.Color;
 
 /**
@@ -29,11 +30,9 @@ public abstract class IA extends Player {
         long initTime = System.currentTimeMillis();
 
         Box bestMove = this.findTheBestMove(board);
-        board.play(bestMove.getLine(), bestMove.getColumn());
-
 
         long duration = System.currentTimeMillis() - initTime;
-        System.out.println("Coup : "+board.getNumberOfMove()+" | Duree : "+ (duration * Math.pow(10,-3)) );
+        board.play(bestMove.getLine(), bestMove.getColumn(), duration);
     }
 
     public abstract Box findTheBestMove(Board board);

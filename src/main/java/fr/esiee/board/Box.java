@@ -1,6 +1,6 @@
-package fr.esiee;
+package fr.esiee.board;
 
-import fr.esiee.Player.Player;
+import fr.esiee.player.Player;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
