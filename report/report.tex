@@ -25,20 +25,31 @@ Le but de ce projet est de créer un plateau de jeu pour le Gomoku et une intell
 
 
 \part{Rapport technique}
-	\chapter{Présentation de choix technologiques}
+	\chapter{Présentation des choix technologiques}
 		\section{Technologie utilisée}
 		% Utilisation de Java, et de JavaFX pour l'ihm
 Nous avons choisi comme langage de programmation Java car celui-ci nous semblait le plus adapté pour créer les différentes parties constituant le jeu.De plus ce langage nous permet, pour l'implémentation de l'interface homme machine, de nous servir de JavaFX et ainsi d'obtenir des rendus de bonne qualité et donc une meilleure expérience de jeu pour l'utilisateur.
 		\section{Organisation du code}
 		% --> Là on calle le diagramme de classe final en intro	
 		%insérer diagramme de classes
-		Dans cette partie nous allons exposer les différentes classes mises en jeu dans notre projet afin de comprendre l'architecture globale. 
-\begin{figure}	\caption{\label{étiquette} diagramme de classes}
-\includegraphics[scale=0.50]{diagrammeDeClasses.png} 
-\end{figure}
-
+            Dans cette partie nous allons exposer les différentes classes mises en jeu dans notre projet afin de comprendre l'architecture globale. Cette architecture est représenté à l'aide du diagramme de classe (cf : figure \ref{DDC}). 
+            Nous pouvons observer qu'il existe trois différents packages qui nous permettent d'organiser nos classes en fonction de leur utilitée.
+            \begin{figure}[!t]
+            	\centering
+                \caption{DDC, Diagramme de classes}
+                \label{DDC}
+                \includegraphics[scale=0.50]{diagrammeDeClasses.png}
+            \end{figure}
 			
-			\subsection{Les classes principales}
+			\subsection{Le package board}
+			\paragraph{}
+			Le package \textit{board} est l'essence du jeux. En effet il contient la classe du même nom, \textit{Board}, ainsi que la classe \textit{Box}. 
+			\paragraph{}
+			
+			\subsection{Le package player}
+			\subsection{Le package principal}
+			Dans le "package principal", nous pouvons observer qu'il existe deux classes qui sont en dehors de tout package (Game et GameIHM).
+			Ces classes nous permettent l'execution du jeux dans deux version differentes. 
 			% --> Là on explique la classe Board, on passe très rapidement sur Game
 			
 			% --> Explication de la classe box
