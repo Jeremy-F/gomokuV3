@@ -96,10 +96,19 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 		% --> Transition en douceur vers l'algorithme MinMax
 		Cet algorithme est la première étape permettant d'augmenter les chances de victoires. Le principe est qu'il cherche le meilleur coup (le "Max") à jouer pour gagner, celui qui rapportera le plus de points. Ainsi avec cette méthode les chances de victoires sont accrues cependant on peut lui reprocher de ne toujours pas prendre en compte les placements de pions de l'autre joueur et c'est cette dernière amélioration qui sera apportée dans l'algorithme suivant. 
 		\section{Min Max}
+		 \begin{figure}[!b]
+             	    \caption{Schéma min-max (source : Wikipedia)}
+             	    \label{minmaxWikipedia}
+             	    \includegraphics[scale=0.60]{Min_Max_Sample_3.png}
+             	\end{figure}
 		% Description de l'algorithme, explication de son fonctionement, l'avantage avec celui là
 		% On concluera sur le fait que beaucoup de coup déjà connus son tout de même testés, et on fera une ouverture sur l'algorithme Alpha Beta, mais aussi sur celui qui permettrai de s'aretter en cas de match null avant la fin pour montrer qu'on a bien compris, et permettre des objets de recherches appronfu derriere #Impatable
         %ouverture temps execution
-        Cet algorithme est le dernier fonctionnel que nous ayons implémenté. Il prend en paramètre un plateau de jeu et une profondeur d'arbre de jeu (cf schéma). Le principe est qu'il calcule à chaque tour le score maximum et le score minimum (correspondant respectivement au joueur courant et à l'adversaire). Cela signifie que cet algorithme suppose qu'à chaque tour, le joueur va effectuer le meilleur coup possible. La profondeur donnée au départ permet de spécifier jusqu'à quelle branche de l'arbre de jeu l'algorithme doit aller regarder. Ainsi plus on augmente la profondeur plus les chances de victoire sont grandes cependant cela à un coût de calcul impactant directement le temps d'exécution d'où l'idée de l'algorithme alpha-bêta.(cf \ref{alphabeta})
+        Cet algorithme est le dernier fonctionnel que nous ayons implémenté. Il prend en paramètre un plateau de jeu et une profondeur d'arbre de jeu (cf schéma).
+        Le principe est qu'il calcule à chaque tour le score maximum et le score minimum (correspondant respectivement au joueur courant et à l'adversaire).
+        Cela signifie que cet algorithme suppose qu'à chaque tour, le joueur va effectuer le meilleur coup possible.
+        La profondeur donnée au départ permet de spécifier jusqu'à quelle branche de l'arbre de jeu l'algorithme doit aller regarder.
+        Ainsi plus on augmente la profondeur plus les chances de victoire sont grandes cependant cela à un coût de calcul impactant directement le temps d'exécution d'où l'idée de l'algorithme alpha-bêta.(cf \ref{alphabeta})
 	\chapter{Les outils de test}
 	% --> A voir si on a le temps de créer des tests en JUnit
 	% --> A voir si on a le temps de faire tourner l'algo à mort pour montrer les tests statistiques
@@ -113,7 +122,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 	
 	\section{Exploitation des données recueillies}
 	
-	\subsection{Temps d'execution de l'algorithme min-max}
+	\subsection{Temps d'execution de l'algorithme min-max} \label{teaminmax}
     Grâce aux données récupérées des fichiers csv, nous avons put observer et verifier l'efficacité de nos algorithmes.
 	Dans un premier temps nous avons réalisé les tests de temps d'execution de l'algorithme min-max en fonction de la profondeur ainsi que du joueur entament la partie. (cf : Figure \ref{TEAMM3x3} - \ref{TEAMM4x4} - \ref{TEAMM5x5}) 
 	Comme nous pouvons le constater, plus la profondeur est importante, plus le temps d'execution d'un coup est long. En effet, on remarque que le temps d'execution augmente factiorellement par apport à la profondeur souhaitée.D'où l'intérêt que nous avons porté à l'algorithme alpha-beta (Cf : \ref{alphabeta}).
@@ -149,7 +158,21 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
     	    \label{TVRandomVMaxScore}
     	     \includegraphics[scale=0.60]{TauxVictoireRandomVsMaxScore.png}
     \end{figure}
-
+    \begin{figure}[!h]
+    	    \caption{Taux de victoire du MaxScore contre le MaxScore}
+    	    \label{TVMaxScoreVMaxScore}
+    	     \includegraphics[scale=0.60]{TauxDeVictoireMaxScoreVSMaxScore.png}
+    \end{figure}
+    \begin{figure}[!h]
+    	    \caption{Taux de victoire du MaxScore contre le MinMax}
+    	    \label{TVMaxScoreVMaxScore}
+    	     \includegraphics[scale=0.60]{TauxDeVictoireMaxScoreVSMinMax.png}
+    \end{figure}
+    \begin{figure}[!h]
+    	    \caption{Taux de victoire du MinMax contre le MinMax}
+    	    \label{TVMaxScoreVMaxScore}
+    	     \includegraphics[scale=0.60]{TauxDeVictoireMinMaxVSMinMax}
+    \end{figure}
 	
 
 \part{Manuel d'utilisation}
