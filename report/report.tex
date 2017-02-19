@@ -34,7 +34,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 		%insérer diagramme de classes
 		Dans cette partie nous allons exposer les différentes classes mises en jeu dans notre projet afin de comprendre l'architecture globale. 
 \begin{figure}	\caption{\label{étiquette} diagramme de classes}
-\includegraphics[scale=0.25]{diagrammeDeClasses.png} 
+\includegraphics[scale=0.50]{diagrammeDeClasses.png} 
 \end{figure}
 
 			
@@ -42,7 +42,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 			% --> Là on explique la classe Board, on passe très rapidement sur Game
 			
 			% --> Explication de la classe box
-			% --> Explication de la classe player et de la classe IA
+			% --> Explication de la classe Player et de la classe IA
 			% % --> Pour les players il faut dire qu'elle definit une methode play, ce qui nous permet de ne pas avoir à la gerer ensuite d'un joueur à l'uatre, c'est rien d'autre que la structure et les methodes de bases
 			% % --> La classe IA definit une structure predefinit pour l'ensemble des IA qu'on voudra mettre en place avec l'ajout de la methode "findTheBestMove", ce qui nous permet d'avoir différents algo possible dans notre programme et donc de pouvoir tester d'un algo à un autre
 	    \subsection{Autres classes}
@@ -71,21 +71,36 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 	\chapter{Le développeur}
 	% --> Là on peut revenir sur le fait que notre code est bien divisé et que si une personne veut reprendre notre architecture et simplement créer une IA sans se préocuper de la création de l'ensemble du jeux, c'est très simple, il suffit de créer une classe qui extends de IA. 
 	% --> Pour lancer des parties qui se jouent seules il suffit de modifier dans Game.... Attention 
-	La structure de ce projet à été pensé de telle sorte à permettre à un développeur d'implémenter une nouvelle intelligence artificielle de jeu sans avoir à se préocuper de la partie de gestion des tours, des joueurs. Pour cela il lui suffit de créer une nouvelle classe fille de la classe IA. Il pourra bénéficier de toutes les fonctionnalités de test déjà mises en place. i
+	La structure de ce projet à été pensé de telle sorte à permettre à un développeur d'implémenter une nouvelle intelligence artificielle de jeu sans avoir à se préocuper de la partie de gestion des tours, des joueurs. Pour cela il lui suffit de créer une nouvelle classe fille de la classe IA. Il pourra bénéficier de toutes les fonctionnalités de test déjà mises en place.
 	
 	
 
 	\chapter{Le joueur}
 	% --> Il suffit de lancer le jeux et bim bam boum, il lui suffit de jouer
 	% --> A voir si on a le temps de revoir l'interface graphique pour permettre au joueur de choisir son nom, sa couleur, ainsi que l'IA qu'il affrontera
+	Pour le joueur il suffit de lancer le jeu, de taper son nom, de choisir sa couleur de pion et l'intelligence artificielle contre laquelle il veut jouer (random, max score ou min-max).
 
 \part{Rapport d'activité}
 % Utilisation de git
-% On a beaucoup parlé, utilisation de schéma pour comprendre les algo
+% On a beaucoup parlé, utilisation de schémas pour comprendre les algo
 % Parler d'une première version avec des clones, et expliquer que le temps etait beaucou beaucoup beaucoup trop long pour être convenable 
+Cette partie explique les différentes difficultés rencontrées ainsi que certains choix technologiques de notre part.
+\section{git}
+Pour réaliser ce projet nous nous sommes servi de gitHub permettant de faire du versionning et ainsi de rendre le travail plus efficace. Ainsi il est possible de voir les différentes évolutions du projet et de revenir en arrière en cas de besoin.
+\section{problèmes rencontrés}
+\subsection{Algorithme min-max}
+ Nous avons du faire un grand nombre de recherches et de tests afin de nous approprier les différents algorithmes et de les implémenter.
+Ainsi pour le min-max, nous avions, dans un premier temps, cloné autant de fois qu'il y a de coup à jouer le plateau de jeu. Cela entraine un temps d'exécution considérable car la complexité étant en O(n!), ce temps était inutilement allongé. Par la suite nous avons trouvé une solution pour simuler les différents coups, stocker la valeur et annuler le coup sur un seul plateau de jeu ce qui rendait le temps d'exécution bien plus convenable.(cf tests temps d'exécution).
+\subsection{Algorithme alpha-bêta}
+Nous avons, suite à l'implémentation de l'algorithme min-max, essayé d'améliorer encore le temps d'exécution sans impacter le taux de victoire grâce à l'algorithme alpha-bêta dont le principe est le même que le min-max mais dont la différence réside dans le fait qu'il limite le nombre de cas testés dans l'arbre de jeu suivant ce principe : si le max du coup suivant est inférieur au min du coup courant alors cette branche ne sera pas explorée. Ainsi seulement les branches menant à une victoire potentielle seront testées et la complexité sera ainsi améliorée.
+Les résultats obtenus n'étant pas concluants nous avons décidé d'avorter cette partie du projet. 
 
 
 \chapter*{Conclusion}
+Ce projet en algorithmique a été une bonne introduction à ce qu'est l'intelligence artificielle et les ressorts sur lesquels elle s'appuie.
+Nous avons du mettre en place une méthodologie afin de construire, tester et améliorer tout ce que nous faisions au fur et à mesure de l'avancement des choses.
+Nous avons apprécié l'autonomie laissée nous obligeant à nous confronter à des problèmes de nature et de complexité diverse afin d'aboutir à quelque chose de fonctionnel
+et qui nous convient du point de vue de l'architecture globale.
 
 
 
