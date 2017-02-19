@@ -28,7 +28,12 @@ public class Game extends Application{
 
 
     public static void main(String[] args) {
-        launch();
+        //launch();
+        /**/
+        Player alexandre = new MinMaxScorePlayer("Alexandre", Color.BLUE);
+        Player jeremy = new MinMaxScorePlayer("Jérémy", Color.RED);
+        Board board = new Board(null, 4, 4, alexandre, jeremy);
+        board.launch();
     }
 
     @Override
@@ -74,8 +79,8 @@ public class Game extends Application{
     @Override
     public void init(){
         Player alexandre = new Person("Alexandre", Color.BLUE);
-        Player jeremy = new AlphaBeta("Jérémy", Color.RED);
-        this.board = new Board(this, 3, 3, alexandre, jeremy);
+        Player jeremy = new MinMaxScorePlayer("Jérémy", Color.RED);
+        this.board = new Board(this, 5, 4, alexandre, jeremy);
     }
     @Override
     public void stop(){

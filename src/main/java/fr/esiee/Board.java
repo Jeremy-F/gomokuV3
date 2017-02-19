@@ -59,6 +59,20 @@ public class Board {
                 '}';
     }
 
+    public boolean canBeWin(){
+        ArrayList<Alignment> alignments = this.getAllAlignment();
+        for(Alignment alignment : alignments){
+            if(alignment.canBeWin(this.remainingMoves())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int remainingMoves() {
+        return (this.getBoxes().size()) - this.getNumberOfMove();
+    }
+
     private String toStringBoxes() {
         String retour = "";
         for (SimpleObjectProperty<Box> box : this.boxes) {

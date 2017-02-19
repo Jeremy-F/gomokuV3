@@ -2,10 +2,7 @@ package fr.esiee.Player;
 
 import fr.esiee.Board;
 import fr.esiee.Box;
-import fr.esiee.Movement;
 import javafx.scene.paint.Color;
-
-import java.util.ArrayList;
 
 /**
  *****************************************************
@@ -18,7 +15,7 @@ import java.util.ArrayList;
  *****************************************************
  * @author Alexandre Causse & Jérémy Fornarino   [E3T]
  */
-public class AlphaBeta extends IA {
+public class AlphaBeta extends MinMaxScorePlayer {
     public AlphaBeta(String name, Color color) {
         super(name, color);
     }

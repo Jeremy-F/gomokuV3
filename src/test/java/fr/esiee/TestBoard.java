@@ -82,4 +82,14 @@ public class TestBoard {
         //board.play(0,2);
     }
 
+    @Test
+    public void testAlignementCanBeWin(){
+        Alignment alignment = new Alignment(4);
+        alignment.add(new Box(0,0));
+        alignment.add(new Box(0,0));
+        alignment.add(new Box(0,0));
+        alignment.add(new Box(0,0));
+        assertTrue("An empty alignment have to be wonable", alignment.canBeWin(8));
+    }
+
 }

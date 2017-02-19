@@ -1,0 +1,72 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc} % un package
+\usepackage[T1]{fontenc}      % un second package
+\usepackage[francais]{babel}  % un troisième package
+
+\title{Rapport de projet - IGE-3006}
+\author{Alexandre \bsc{Causse} - Jérémy \bsc{Fornarino}}
+\date{Année scolaire : 2016-2017}
+
+
+\begin{document}
+
+\maketitle
+
+\renewcommand{\contentsname}{Sommaire} 
+\tableofcontents
+\listoffigures
+
+\chapter*{Introduction}
+
+
+\part{Rapport technique}
+	\chapter{Présentation de choix technologiques}
+		\section{Technologie utilisé}
+		% Utilisation de Java, et de JavaFX pour l'ihm
+		\section{Organisation du code}
+		% --> Là on calle le diagramme de classe final en intro
+			\subsection{Les classes principal}
+			% --> Là on explique la classe Board, on passe très rapidement sur Game
+			% --> Explication de la classe box
+			% --> Explication de la classe Player et de la classe IA
+			% % --> Pour les players il faut dire qu'elle definit une methode play, ce qui nous permet de ne pas avoir à la gerer ensuite d'un joueur à l'uatre, c'est rien d'autre que la structure et les methodes de bases
+			% % --> La classe IA definit une structure predefinit pour l'ensemble des IA qu'on voudra mettre en place avec l'ajout de la methode "findTheBestMove", ce qui nous permet d'avoir différents algo possible dans notre programme et donc de pouvoir tester d'un algo à un autre
+	\chapter{Description des algorithmes}
+	%% ATTENTION : Bien parler de la pronfondeur, et expliquer que plus on va taper dans le fond plus l'algo est precis et a de chance de gagenr, et moins il est rapide.
+		\section{Random}
+		% --> Là on explique que pour commencer on a créer une IA Random, ca nous a permit de mettre en place la structure de notre code et de tester les différentes methodes relatives a la board en mettant de côté la phase algorithmiques qui viendra plus tard
+		\section{Max score}
+		% Dans cette section nous expliquerons que on a commencé par créer un algorithme "max", cette alogrithmes permet de connaitre le coup qui nous rapportera le plus de point. On va expliquer comment il fonctionne (#schéma)
+		% On concluera sur le fait que même si on a plus de chance de gagner grâce à cette algo, il pose des problème du fait qu'il ne prévoit pas que l'adversaire puisse gagner donc il ne lui bloquera pas ses coups
+		% --> Transition en douceur vers l'algorithme MinMax
+		\section{Min Max}
+		% Description de l'algorithme, explication de son fonctionement, l'avantage avec celui là
+		% On concluera sur le fait que beaucoup de coup déjà connue son tout de même tester, et on fera une ouverture sur l'algorithme Alpha Beta, mais aussi sur celui qui permettrai de s'aretter en cas de match null avant la fin pour montrer qu'on a bien compris, et permettre des objets de recherches appronfu derriere #Impatable
+
+	\chapter{Les outils de test}
+	% --> A voir si on a le temps de créer des tests en JUnit
+	% --> A voir si on a le temps de faire tourner l'algo à mort pour montrer les tests statistiques
+
+\part{Manuel d'utilisation}
+	\chapter{Utilisateur informatique}
+	% --> Là on peut revenir sur le fait que notre code est bien divisé et que si une personne veut reprendre notre architecture et simplement créer une IA sans se préocuper de la création de l'ensemble du jeux, c'est très simple, il suffit de créer une classe qui extends de IA. 
+	% --> Pour lancer des partie qui se joue seul il suffit de modifier dans Game.... Attention 
+
+	\chapter{Le joueur}
+	% --> Il suffit de lancer le jeux et bim bam boum, il lui suffit de jouer
+	% --> A voir si on a le temps de revoir l'interface graphique pour permettre au joueur de choisir son nom, sa couleur, ainsi que l'IA qu'il affrontera
+
+\part{Rapport d'activité}
+% Utilisation de git
+% On a beaucoup parlé, utilisation de schéma pour comprendre les algo
+% Parler d'une première version avec des clones, et expliquer que le temps etait beaucou beaucoup beaucoup trop long pour être convenable 
+
+
+\chapter*{Conclusion}
+
+
+
+
+
+\end{document}
