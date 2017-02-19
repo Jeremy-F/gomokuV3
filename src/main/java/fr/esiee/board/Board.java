@@ -25,7 +25,7 @@ public class Board {
 
 
     private Player[] players = new Player[2];
-    private ArrayList<SimpleObjectProperty<Box>> boxes;
+    private ArrayList<Box> boxes;
     private int nbAlignedBoxesForWin;
 
     private ArrayList<Movement> movementsStory;
@@ -40,10 +40,10 @@ public class Board {
     public Board(GameIHM game, int size, int nbAlignedBoxesForWin, Player player1, Player player2) {
         this.game = game;
         this.nbAlignedBoxesForWin = nbAlignedBoxesForWin;
-        this.boxes = new ArrayList<SimpleObjectProperty<Box>>();
+        this.boxes = new ArrayList<Box>();
         for(int line = 0; line < size; line++){
             for(int column = 0; column < size; column++){
-                boxes.add(new SimpleObjectProperty<Box>(new Box(line, column)));
+                boxes.add(new Box(line, column));
             }
         }
         this.setPlayer(0, player1);
@@ -78,8 +78,8 @@ public class Board {
 
     private String toStringBoxes() {
         String retour = "";
-        for (SimpleObjectProperty<Box> box : this.boxes) {
-            retour += box.get().toString() + "\n";
+        for (Box box : this.boxes) {
+            retour += box.toString() + "\n";
         }
         return retour;
     }
@@ -185,21 +185,11 @@ public class Board {
      * @return The {@link Board} object corresponding
      */
     public Box getBox(int line, int column){
-        SimpleObjectProperty<Box> boxProperty = this.getBoxProperty(line, column);
-        return (boxProperty != null) ? boxProperty.get() : null;
-    }
-    /**
-     * Select one box
-     * @param line of the box (i)
-     * @param column of the box (j)
-     * @return A SimpleObjectProperty with the {@link Box} inside
-     */
-    public SimpleObjectProperty<Box> getBoxProperty(int line, int column){
         return this.boxes.get(getIndexBox(line,column));
     }
     public int getIndexBox(int line, int column){
         for(int i = 0; i < this.boxes.size(); i++){
-            Box box = (Box) this.boxes.get(i).get();
+            Box box = (Box) this.boxes.get(i);
             if(box.getLine() == line &&  box.getColumn() == column){
                 return i;
             }
@@ -208,9 +198,7 @@ public class Board {
     }
     public ArrayList<Box> getBoxes() {
         ArrayList<Box> boxes = new ArrayList<>();
-        this.boxes.forEach(boxSimpleObjectProperty -> {
-            boxes.add(boxSimpleObjectProperty.get());
-        });
+        this.boxes.forEach(boxes::add);
         return boxes;
     }
     public ArrayList<Box> getAllEmptyBox() {
@@ -305,7 +293,7 @@ public class Board {
         return getIndexBox(mvnt.getLine(), mvnt.getColumn());
     }
     public Box getLastBoxPlayed(){
-        return this.boxes.get(this.getLastIndexBoxPlayed()).get();
+        return this.boxes.get(this.getLastIndexBoxPlayed());
     }
     public Movement getLastMove(){
         int numberOfMove = this.getNumberOfMove();
