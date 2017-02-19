@@ -2,7 +2,10 @@ package fr.esiee.Player;
 
 import fr.esiee.Board;
 import fr.esiee.Box;
+import fr.esiee.Movement;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 /**
  *****************************************************
@@ -31,6 +34,44 @@ public class AlphaBeta extends IA {
 
     @Override
     public Box findTheBestMove(Board board) {
-        return null;
+        int bestScore = Integer.MIN_VALUE;
+        Box finalBox = null;
+        ArrayList<Box> allEmptyBox = board.getAllEmptyBox();
+        for (Box box : allEmptyBox) {
+            board.play(box.getLine(), box.getColumn());
+
+            int alphaBeta = this.alphaBeta(board, Player.DEPTH, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            if (alphaBeta > bestScore) {
+                bestScore = alphaBeta;
+                finalBox = box;
+            }
+            board.cancelLastMove();
+        }
+        System.out.println(finalBox);
+        return finalBox;
+    }
+
+    private int alphaBeta(Board board, int depth, int alpha, int beta) {
+        if (board.isFinished() || depth <= 0) {
+            return board.scoreFor(this);
+        }
+        Movement lastMovement = board.getLastMove();
+        Player lastPlayer = board.getPlayer(lastMovement.getPlayerIndex());
+        ArrayList<Box> allEmptyBox = board.getAllEmptyBox();
+        if(!lastPlayer.equals(this)){
+            for(Box emptyBox : allEmptyBox){
+                beta = Integer.min(beta, this.alphaBeta(board, depth-1, alpha, beta));
+                if(alpha >= beta){
+                    return alpha;
+                }
+            }
+            return beta;
+        }for(Box emptyBox : allEmptyBox){
+            alpha = Integer.max(alpha, this.alphaBeta(board, depth-1, alpha, beta));
+            if(alpha >= beta){
+                return beta;
+            }
+        }
+        return alpha;
     }
 }

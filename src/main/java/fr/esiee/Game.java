@@ -74,8 +74,8 @@ public class Game extends Application{
     @Override
     public void init(){
         Player alexandre = new Person("Alexandre", Color.BLUE);
-        Player jeremy = new MinMaxScorePlayer("Jérémy", Color.RED);
-        this.board = new Board(this, 5, 4, alexandre, jeremy);
+        Player jeremy = new AlphaBeta("Jérémy", Color.RED);
+        this.board = new Board(this, 3, 3, alexandre, jeremy);
     }
     @Override
     public void stop(){
