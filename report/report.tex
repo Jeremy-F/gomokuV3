@@ -50,7 +50,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
                			 déterminer une victoire et le nombre de coups déjà joués. Le nombre de coups déjà joués peut être calculé car nous avons mis en place un historique des mouvements effectués
                			 par l'intermédiaire d'un tableau de "Movement" (cf : \ref{pckCore}).
                			 Par ailleurs cet historique nous permet d'annuler le dernier coup jusqu'à atteindre la "racine" de l'arbre de jeu.
-                
+
                     \paragraph{La classe box} \label{classBox}
 
                Cette classe permet de contenir l'emplacement de la case sur le tableau.
@@ -78,7 +78,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 			La seconde version \textit{Game} nous a permis de réaliser des test (cf : \ref{fichierCSV}) et d'executer le script sans
 			interface homme machine (IHM) d'où l'importance de rendre le plateau de jeu totalement indépendant.
 			% --> Là on explique la classe Board, on passe très rapidement sur Game
-			
+
 			% --> Explication de la classe box
 			% --> Explication de la classe Player et de la classe IA
 			% % --> Pour les players il faut dire qu'elle definit une methode play, ce qui nous permet de ne pas avoir à la gerer ensuite d'un joueur à l'uatre, c'est rien d'autre que la structure et les methodes de bases
@@ -94,7 +94,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 		% Dans cette section nous expliquerons que on a commencé par créer un algorithme "max", cette alogrithmes permet de connaitre le coup qui nous rapportera le plus de point. On va expliquer comment il fonctionne (#schéma)
 		% On concluera sur le fait que même si on a plus de chance de gagner grâce à cet algo, il pose des problèmes du fait qu'il ne prévoit pas que l'adversaire puisse gagner donc il ne lui bloquera pas ses coups
 		% --> Transition en douceur vers l'algorithme MinMax
-		Cet algorithme est la première étape permettant d'augmenter les chances de victoires. Le principe est qu'il cherche le meilleur coup (le "Max") à jouer pour gagner, celui qui rapportera le plus de points. Ainsi avec cette méthode les chances de victoires sont accrues cependant on peut lui reprocher de ne toujours pas prendre en compte les placements de pions de l'autre joueur et c'est cette dernière amélioration qui sera apportée dans l'algorithme suivant. 
+		Cet algorithme est la première étape permettant d'augmenter les chances de victoires. Le principe est qu'il cherche le meilleur coup (le "Max") à jouer pour gagner, celui qui rapportera le plus de points. Ainsi avec cette méthode les chances de victoires sont accrues cependant on peut lui reprocher de ne toujours pas prendre en compte les placements de pions de l'autre joueur et c'est cette dernière amélioration qui sera apportée dans l'algorithme suivant.
 		\section{Min Max}
 		 \begin{figure}[!b]
              	    \caption{Schéma min-max (source : Wikipedia)}
@@ -108,7 +108,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 	\chapter{Les outils de test}
 	% --> A voir si on a le temps de créer des tests en JUnit
 	% --> A voir si on a le temps de faire tourner l'algo à mort pour montrer les tests statistiques
-	Cette partie a pour but de décrire les moyens mis en œuvre afin de tester les différents paramètres des algorithmes implémentés. 
+	Cette partie a pour but de décrire les moyens mis en œuvre afin de tester les différents paramètres des algorithmes implémentés.
 	\section{Création des fichiers .CSV}
 	\label{fichierCSV}
 	Afin d'obtenir des données lisibles et exploitables nous avons créé une nouvelle classe Game sans interface graphique permettant la collecte des données de test.
@@ -120,7 +120,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 	
 	\subsection{Temps d'execution de l'algorithme min-max} \label{teaminmax}
     Grâce aux données récupérées des fichiers csv, nous avons put observer et verifier l'efficacité de nos algorithmes.
-	Dans un premier temps nous avons réalisé les tests de temps d'execution de l'algorithme min-max en fonction de la profondeur ainsi que du joueur entament la partie. (cf : Figure \ref{TEAMM3x3} - \ref{TEAMM4x4} - \ref{TEAMM5x5}) 
+	Dans un premier temps nous avons réalisé les tests de temps d'execution de l'algorithme min-max en fonction de la profondeur ainsi que du joueur entament la partie. (cf : Figure \ref{TEAMM3x3} - \ref{TEAMM4x4} - \ref{TEAMM5x5})
 	Comme nous pouvons le constater, plus la profondeur est importante, plus le temps d'execution d'un coup est long. En effet, on remarque que le temps d'execution augmente factiorellement par apport à la profondeur souhaitée.D'où l'intérêt que nous avons porté à l'algorithme alpha-beta (Cf : \ref{alphabeta}).
 	\begin{figure}[!t]
 	    \caption{Temps d'éxecution de l'algorthme min-max avec un plateau 3x3}
@@ -137,8 +137,8 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
     	    \label{TEAMM5x5}
     	    \includegraphics[scale=0.40]{tempsExecutionMinMax5x5.png}
     	\end{figure}
-	
-	
+
+
 	\subsection{Taux de victoire des differents algorithmes}
 	Pour verifier l'efficacité de nos différents algorithmes, nous avons décidé de les faire s'affronter sur un grand nombre de parties. 
 	Ainsi nous avons obtenu les graphiques suivants (cf : ) 
