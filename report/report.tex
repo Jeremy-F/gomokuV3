@@ -32,8 +32,8 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 		\section{Organisation du code}
 		% --> Là on calle le diagramme de classe final en intro	
 		%insérer diagramme de classes
-            Dans cette partie nous allons exposer les différentes classes mises en jeu dans notre projet afin de comprendre l'architecture globale. Cette architecture est représenté à l'aide du diagramme de classe (cf : figure \ref{DDC}). 
-            Nous pouvons observer qu'il existe trois différents packages qui nous permettent d'organiser nos classes en fonction de leur utilitée.
+            Dans cette partie nous allons exposer les différentes classes mises en jeu dans notre projet afin de comprendre l'architecture globale. Cette architecture est représentée à l'aide du diagramme de classe (cf : figure \ref{DDC}).
+            Nous avons mis en place trois différents packages qui nous permettent d'organiser nos classes en fonction de leur utilité.
             \begin{figure}[!t]
             	\centering
                 \caption{DDC, Diagramme de classes}
@@ -41,22 +41,48 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
                 \includegraphics[scale=0.50]{diagrammeDeClasses.png}
             \end{figure}
 			
-			\subsection{Le package board}
-			\paragraph{}
-			Le package \textit{board} est l'essence du jeux. En effet il contient la classe du même nom, \textit{Board}, ainsi que la classe \textit{Box}. 
-			\paragraph{}
-			
-			\subsection{Le package player}
+			\subsection{Le package board}\label{packageBoard}
+               		\paragraph{}
+                			Le package \textit{board} est l'essence du jeux. En effet il contient la classe du même nom, \textit{Board}, ainsi que la classe \textit{Box}.
+                		\paragraph{La classe board}\label{classeBoard}
+               			 Cette classe représente le plateau de jeux. Elle contient un tableau avec l'ensemble des cases (cf : \ref{classBox}), les deux joueurs et le nombre de pions qu'il faut aligner pour gagner.
+               			 De plus elle contient toutes les méthodes permettant l'évaluation de l'état du jeu à l'état courant. Par exemple les méthodes isFinished() et getNumberOfMove() permettent respectivement de
+               			 déterminer une victoire et le nombre de coups déjà joués. Le nombre de coups déjà joués peut être calculé car nous avons mis en place un historique des mouvements effectués
+               			 par l'intermédiaire d'un tableau de "Movement" (cf : \ref{pckCore}).
+               			 Par ailleurs cet historique nous permet d'annuler le dernier coup jusqu'à atteindre la "racine" de l'arbre de jeu.
+                
+                    \paragraph{La classe box} \label{classBox}
+
+               Cette classe permet de contenir l'emplacement de la case sur le tableau.
+               La classe box permet également savoir si une case est prise par un joueur (cf : \ref{pckPlayer}) ou non.
+
+			\subsection{Le package player} \label{pckPlayer}
+			Ce package contient toutes les classes permettant de donner la main à un "joueur" celui-ci pouvant être un humain ou une intelligence artificielle.
+
+			\paragraph{La classe Player}
+			C'est une classe abstraite qui va permettre de définir la structure de base pour les différents types de joueurs.
+			  Elle définit une méthode play(Board board) abstraite qui est utilisée par la board pour jouer.
+            \subsubsection{Le package ia}
+              Ce package contient l'ensemble des intelligences artificielles. L'ensemble des classes représentant une intelligence artificielle heritent de la classe abstraite IA.
+              \paragraph{La classe abstraite IA}
+              Cette classe hérite de la classe Player, elle définit le corps de la méthode play(Board board) ainsi qu'une méthode abstraite \textit{findTheBestMove(Board board)}.
+              Cette methode demande aux filles de IA le meilleur coup à effectuer pour que l'IA le joue elle-même.
+
+			\subsection{Le package core}\label{pckCore}
+			Il contient deux classes qui permettent d'ordoner des informations afin de s'en servir par la suite.
+
 			\subsection{Le package principal}
 			Dans le "package principal", nous pouvons observer qu'il existe deux classes qui sont en dehors de tout package (Game et GameIHM).
-			Ces classes nous permettent l'execution du jeux dans deux version differentes. 
+			Ces classes nous permettent l'execution du jeux dans deux version differentes.
+			La première version \textit{GameIHM} nous permet de proposer une interface graphique a nos utilisateurs.
+			La seconde version \textit{Game} nous a permit de réaliser des test (cf : \ref{fichierCSV}) et d'executer le script sans
+			interface homme machine (IHM) d'où l'importance de rendre le plateau de jeu totalement indépendant.
 			% --> Là on explique la classe Board, on passe très rapidement sur Game
 			
 			% --> Explication de la classe box
 			% --> Explication de la classe Player et de la classe IA
 			% % --> Pour les players il faut dire qu'elle definit une methode play, ce qui nous permet de ne pas avoir à la gerer ensuite d'un joueur à l'uatre, c'est rien d'autre que la structure et les methodes de bases
 			% % --> La classe IA definit une structure predefinit pour l'ensemble des IA qu'on voudra mettre en place avec l'ajout de la methode "findTheBestMove", ce qui nous permet d'avoir différents algo possible dans notre programme et donc de pouvoir tester d'un algo à un autre
-	    \subsection{Autres classes}
 	        %---> alignment et movement
 	\chapter{Description des algorithmes}
 	%% ATTENTION : Bien parler de la pronfondeur, et expliquer que plus on va taper dans le fond plus l'algo est precis et a de chance de gagner, et moins il est rapide.
@@ -79,6 +105,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 	% --> A voir si on a le temps de faire tourner l'algo à mort pour montrer les tests statistiques
 	Cette partie a pour but de décrire les moyens mis en œuvre afin de tester les différents paramètres des algorithmes implémentés. 
 	\section{Création des fichiers .CSV}
+	\label{fichierCSV}
 	Afin d'obtenir des données lisibles et exploitables nous avons créé une nouvelle classe Game sans interface graphique permettant la collecte des données de test. Ainsi nous pouvons en extraire le temps moyen de jeu pour chaque joueur en fonction de l'algorithme choisi, le joueur ayant gagné, le nombre de coups joués et la profondeur (dans le cas de l'algorithme min-max).Les temps d'exécution sont donnés à titre indicatif car ils peuvent varier selon l'ordinateur utilisé.
 	\section{JUnit}
 	
@@ -92,7 +119,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 	\chapter{Le développeur}
 	% --> Là on peut revenir sur le fait que notre code est bien divisé et que si une personne veut reprendre notre architecture et simplement créer une IA sans se préocuper de la création de l'ensemble du jeux, c'est très simple, il suffit de créer une classe qui extends de IA. 
 	% --> Pour lancer des parties qui se jouent seules il suffit de modifier dans Game.... Attention 
-	La structure de ce projet à été pensé de telle sorte à permettre à un développeur d'implémenter une nouvelle intelligence artificielle de jeu sans avoir à se préocuper de la partie de gestion des tours, des joueurs. Pour cela il lui suffit de créer une nouvelle classe fille de la classe IA. Il pourra bénéficier de toutes les fonctionnalités de test déjà mises en place.
+	La structure de ce projet à été pensée de telle sorte à permettre à un développeur d'implémenter une nouvelle intelligence artificielle de jeu sans avoir à se préocuper de la partie de gestion des tours, des joueurs. Pour cela il lui suffit de créer une nouvelle classe fille de la classe IA. Il pourra bénéficier de toutes les fonctionnalités de test déjà mises en place.
 	
 	
 
