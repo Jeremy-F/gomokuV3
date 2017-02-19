@@ -1,7 +1,11 @@
-package fr.esiee.Player;
+package fr.esiee.player.ia;
 
-import fr.esiee.Board;
+import fr.esiee.board.Board;
+import fr.esiee.board.Box;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.Random;
 /**
  *****************************************************
  * ,----.     E3T - Esiee Paris      ,--.            *
@@ -13,26 +17,19 @@ import javafx.scene.paint.Color;
  *****************************************************
  * @author Alexandre Causse & Jérémy Fornarino   [E3T]
  */
-public abstract class Player {
-    public static final int DEPTH = 3;
-    private String name;
-    private Color color;
-
-    public Player(String name, Color color) {
-        this.name = name;
-        this.color = color;
+public class RandomPlayer extends IA{
+    public RandomPlayer(String name, Color color) {
+        super(name, color);
     }
-    public abstract void play(Board board);
+
     @Override
-    public String toString() {
-        return "Player{" +
-                "name='" + name + '\''+
-                '}';
+    public int evaluate(Board board) {
+        return 0;
     }
 
-    public abstract int evaluate(Board board);
-
-    public Color getColor() {
-        return color;
+    @Override
+    public Box findTheBestMove(Board board) {
+        ArrayList<Box> allEmptyBox = board.getAllEmptyBox();
+        return allEmptyBox.get(new Random().nextInt(allEmptyBox.size()));
     }
 }

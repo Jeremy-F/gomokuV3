@@ -1,9 +1,9 @@
-package fr.esiee.Player;
+package fr.esiee.player.ia;
 
-import fr.esiee.Board;
-import fr.esiee.Box;
+import fr.esiee.board.Board;
+import fr.esiee.board.Box;
+import fr.esiee.player.Player;
 import javafx.scene.paint.Color;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.ArrayList;
 /**
@@ -40,7 +40,6 @@ public class MaxScorePlayer extends IA {
         int score = Integer.MIN_VALUE;
         ArrayList<Box> allEmptyBox = board.getAllEmptyBox();
         for(Box emptyBox : allEmptyBox){
-            System.out.println(emptyBox);
             board.play(emptyBox.getLine(), emptyBox.getColumn());
             //*
             int myScore = score(board, Player.DEPTH);
@@ -58,7 +57,6 @@ public class MaxScorePlayer extends IA {
     }
     public int score(Board board, int depth){
         if(board.isFinished() || depth <= 0){
-            System.out.println(this);
             int currentScore = board.scoreFor(this);
             //board.cancelLastMove();
             return currentScore;
@@ -77,7 +75,6 @@ public class MaxScorePlayer extends IA {
             //}
 
         }
-        System.out.println("New score : "+score);
         return score;
     }
     //*/

@@ -1,7 +1,8 @@
-package fr.esiee;
+package fr.esiee.core;
 
 
-import fr.esiee.Player.Player;
+import fr.esiee.board.Box;
+import fr.esiee.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;

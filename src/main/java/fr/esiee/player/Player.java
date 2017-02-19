@@ -1,5 +1,6 @@
-package fr.esiee.Player;
-import fr.esiee.Board;
+package fr.esiee.player;
+
+import fr.esiee.board.Board;
 import javafx.scene.paint.Color;
 /**
  *****************************************************
@@ -12,18 +13,26 @@ import javafx.scene.paint.Color;
  *****************************************************
  * @author Alexandre Causse & Jérémy Fornarino   [E3T]
  */
-public class Person extends Player{
-    public Person(String name, Color color) {
-        super(name, color);
+public abstract class Player {
+    public static final int DEPTH = 3;
+    private String name;
+    private Color color;
+
+    public Player(String name, Color color) {
+        this.name = name;
+        this.color = color;
+    }
+    public abstract void play(Board board);
+    @Override
+    public String toString() {
+        return "player{" +
+                "name='" + name + '\''+
+                '}';
     }
 
-    @Override
-    public void play(Board board) {
+    public abstract int evaluate(Board board);
 
-    }
-
-    @Override
-    public int evaluate(Board board) {
-        return 0;
+    public Color getColor() {
+        return color;
     }
 }

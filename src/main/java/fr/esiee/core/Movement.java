@@ -1,4 +1,4 @@
-package fr.esiee;
+package fr.esiee.core;
 /**
  *****************************************************
  * ,----.     E3T - Esiee Paris      ,--.            *
@@ -14,11 +14,17 @@ public class Movement {
     private int line;
     private int column;
     private int playerIndex;
+    private long executionTime;
 
     public Movement(int line, int column, int playerIndex) {
+        this(line,column,playerIndex,-1);
+    }
+
+    public Movement(int line, int column, int playerIndex, long executionTime) {
         this.line = line;
         this.column = column;
         this.playerIndex = playerIndex;
+        this.executionTime = executionTime;
     }
 
     public int getLine() {
@@ -39,6 +45,7 @@ public class Movement {
                 "line=" + line +
                 ", column=" + column +
                 ", playerIndex=" + playerIndex +
+                ", executionTime=" + executionTime +
                 '}';
     }
 
