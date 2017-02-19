@@ -3,9 +3,10 @@ package fr.esiee;
 import fr.esiee.player.*;
 import fr.esiee.board.Board;
 import fr.esiee.player.ia.MinMaxScorePlayer;
-import fr.esiee.player.ia.RandomPlayer;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+
+import java.io.*;
 
 /**
  *****************************************************
@@ -25,10 +26,30 @@ public class Game{
     private GridPane gridPane;
 
 
-    public static void main(String[] args) {
-        Player alexandre = new RandomPlayer("Alexandre", Color.BLUE);
-        Player jeremy = new MinMaxScorePlayer("Jérémy", Color.RED);
-        Board board = new Board(null, 4, 4, alexandre, jeremy);
-        board.launch();
+    public static void main(String[] args){
+        String pathname = Game.class.getResource("").toString() + "MinMaxVSMinMax-Dept1-5x5.csv";
+        pathname = pathname.substring(5, pathname.length());
+        File file = new File(pathname);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try(FileWriter fw = new FileWriter(pathname, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw)) {
+            out.println("Player1, Player2,nbMovementPlayed,depth,winnerIndex,executionTimePlayer1,executionTimePlayer2");
+            for (int i = 0; i < 100; i++) {
+                System.out.println("Jeux : "+i);
+                Player alexandre = new MinMaxScorePlayer("Alexandre", Color.BLUE);
+                Player jeremy = new MinMaxScorePlayer("Jérémy", Color.RED);
+                Board board = new Board(null, 5, 5, alexandre, jeremy);
+                board.launch();
+                out.println(board.toCSVLine());
+            }
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

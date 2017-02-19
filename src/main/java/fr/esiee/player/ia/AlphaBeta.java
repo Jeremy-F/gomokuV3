@@ -2,7 +2,11 @@ package fr.esiee.player.ia;
 
 import fr.esiee.board.Board;
 import fr.esiee.board.Box;
+import fr.esiee.core.Movement;
+import fr.esiee.player.Player;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 /**
  *****************************************************
