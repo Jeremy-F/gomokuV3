@@ -82,7 +82,57 @@ public class Alignment {
         this.boxes.remove(box);
         return this;
     }
+    public boolean canBeWin(int remainingMoves){
+        if(!this.earned()){
+            int numberOfEmptyBoxes = this.numberOfEmptyBoxes();
+            if(numberOfEmptyBoxes != 0 || this.nbAlignedBoxesForWin > this.size()){
+                if( (numberOfEmptyBoxes == this.size() - 2) && (numberOfEmptyBoxes+1 == this.nbAlignedBoxesForWin) ){
+                    return true;
+                }else if(maxPossibleAlignement(remainingMoves) >= this.nbAlignedBoxesForWin){
+                    return true;
+                }
+            }
+            return false;
+        }return false;
+    }
+    public int maxPossibleAlignement(int remainingMoves){
+        int maxAlignementPossible = 0;
+        for(int i = 0; i < this.size(); i++){
+            int numberOfCurrentAlignement = 0;
+            Player lastPlayer = null;
 
+            for(int j = i, currentRemainingMoves = (remainingMoves/2); j < this.size() && currentRemainingMoves > 0; j++, currentRemainingMoves--){
+                Box box = this.getBox(j);
+                Player owner = box.getOwner();
+                if(owner != null){
+                    if(lastPlayer == null || owner.equals(lastPlayer)){
+                        numberOfCurrentAlignement++;
+                    }else {
+                        numberOfCurrentAlignement = 0;
+                    }
+                }else {
+                    numberOfCurrentAlignement++;
+                }
+                lastPlayer = owner;
+                if(numberOfCurrentAlignement >= maxAlignementPossible){
+                    maxAlignementPossible = numberOfCurrentAlignement;
+                }
+            }
+        }
+        return maxAlignementPossible;
+    }
+    public int numberOfEmptyBoxes(){
+        final int[] total = {0};
+        this.boxes.forEach(box -> {
+            if(!box.hasOwner()){
+                total[0]++;
+            }
+        });
+        return total[0];
+    }
+    public boolean earned(){
+        return this.earnedBy() != null;
+    }
     /**
      *
      * To know if a player "have win" an alignment

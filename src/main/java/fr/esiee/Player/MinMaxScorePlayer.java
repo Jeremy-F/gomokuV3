@@ -62,6 +62,9 @@ public class MinMaxScorePlayer extends IA {
         if (board.isFinished() || depth <= 0) {
             return board.scoreFor(this);
         }
+        //if(!board.canBeWin()){
+        //    return 0;
+        //}
         int min = Integer.MAX_VALUE;
         int currentValue;
 
@@ -84,6 +87,9 @@ public class MinMaxScorePlayer extends IA {
         if (board.isFinished() || depth <= 0) {
             return board.scoreFor(this);
         }
+        //if(!board.canBeWin()){
+        //    return 0;
+        //}
         int max = Integer.MIN_VALUE;
         int currentValue;
 

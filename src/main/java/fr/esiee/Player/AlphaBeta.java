@@ -15,22 +15,13 @@ import javafx.scene.paint.Color;
  *****************************************************
  * @author Alexandre Causse & Jérémy Fornarino   [E3T]
  */
-public class AlphaBeta extends IA {
+public class AlphaBeta extends MinMaxScorePlayer {
     public AlphaBeta(String name, Color color) {
         super(name, color);
     }
-
-    @Override
-    public int evaluate(Board board) {
-        final int alignementSize = 2;
-        Player otherPlayer = board.getOtherPlayer(this);
-        final int getnumberOfAlignementsOfThis = board.getnumberOfAlignementsOf(this, alignementSize);
-        final int getnumberOfAlignementsOfOther = board.getnumberOfAlignementsOf(otherPlayer, alignementSize);
-        return getnumberOfAlignementsOfThis - getnumberOfAlignementsOfOther;
-    }
-
     @Override
     public Box findTheBestMove(Board board) {
+
         return null;
     }
 }

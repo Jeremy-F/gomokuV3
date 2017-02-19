@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
  * @author Alexandre Causse & Jérémy Fornarino   [E3T]
  */
 public abstract class Player {
-    public static final int DEPTH = 4;
+    public static final int DEPTH = 3;
     private String name;
     private Color color;
 
