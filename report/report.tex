@@ -99,34 +99,71 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 		% Description de l'algorithme, explication de son fonctionement, l'avantage avec celui là
 		% On concluera sur le fait que beaucoup de coup déjà connus son tout de même testés, et on fera une ouverture sur l'algorithme Alpha Beta, mais aussi sur celui qui permettrai de s'aretter en cas de match null avant la fin pour montrer qu'on a bien compris, et permettre des objets de recherches appronfu derriere #Impatable
         %ouverture temps execution
-        Cet algorithme est le dernier fonctionnel que nous ayons implémenté. Il prend en paramètre un plateau de jeu et une profondeur d'arbre de jeu (cf schéma). Le principe est qu'il calcule à chaque tour le score maximum et le score minimum (correspondant respectivement au joueur courant et à l'adversaire). Cela signifie que cet algorithme suppose qu'à chaque tour, le joueur va effectuer le meilleur coup possible. La profondeur donnée au départ permet de spécifier jusqu'à quelle branche de l'arbre de jeu l'algorithme doit aller regarder. Ainsi plus on augmente la profondeur plus les chances de victoire sont grandes cependant cela à un coût de calcul impactant directement le temps d'exécution d'où l'idée de l'algorithme alpha-bêta.(cf partie à voir)
+        Cet algorithme est le dernier fonctionnel que nous ayons implémenté. Il prend en paramètre un plateau de jeu et une profondeur d'arbre de jeu (cf schéma). Le principe est qu'il calcule à chaque tour le score maximum et le score minimum (correspondant respectivement au joueur courant et à l'adversaire). Cela signifie que cet algorithme suppose qu'à chaque tour, le joueur va effectuer le meilleur coup possible. La profondeur donnée au départ permet de spécifier jusqu'à quelle branche de l'arbre de jeu l'algorithme doit aller regarder. Ainsi plus on augmente la profondeur plus les chances de victoire sont grandes cependant cela à un coût de calcul impactant directement le temps d'exécution d'où l'idée de l'algorithme alpha-bêta.(cf \ref{alphabeta})
 	\chapter{Les outils de test}
 	% --> A voir si on a le temps de créer des tests en JUnit
 	% --> A voir si on a le temps de faire tourner l'algo à mort pour montrer les tests statistiques
 	Cette partie a pour but de décrire les moyens mis en œuvre afin de tester les différents paramètres des algorithmes implémentés. 
 	\section{Création des fichiers .CSV}
 	\label{fichierCSV}
-	Afin d'obtenir des données lisibles et exploitables nous avons créé une nouvelle classe Game sans interface graphique permettant la collecte des données de test. Ainsi nous pouvons en extraire le temps moyen de jeu pour chaque joueur en fonction de l'algorithme choisi, le joueur ayant gagné, le nombre de coups joués et la profondeur (dans le cas de l'algorithme min-max).Les temps d'exécution sont donnés à titre indicatif car ils peuvent varier selon l'ordinateur utilisé.
+	Afin d'obtenir des données lisibles et exploitables nous avons créé une nouvelle classe Game sans interface graphique permettant la collecte des données de test.
+	Ainsi nous pouvons en extraire le temps moyen de jeu pour chaque joueur en fonction de l'algorithme choisi, le joueur ayant gagné,
+	le nombre de coups joués et la profondeur (dans le cas de l'algorithme min-max).Les temps d'exécution sont donnés à titre indicatif car ils peuvent varier selon l'ordinateur utilisé.
 	\section{JUnit}
 	
 	\section{Exploitation des données recueillies}
-	Grâce aux données récupérées des fichiers csv, nous avons les données suivantes.
+	
+	\subsection{Temps d'execution de l'algorithme min-max}
+    Grâce aux données récupérées des fichiers csv, nous avons put observer et verifier l'efficacité de nos algorithmes.
+	Dans un premier temps nous avons réalisé les tests de temps d'execution de l'algorithme min-max en fonction de la profondeur ainsi que du joueur entament la partie. (cf : Figure \ref{TEAMM3x3} - \ref{TEAMM4x4} - \ref{TEAMM5x5}) 
+	Comme nous pouvons le constater, plus la profondeur est importante, plus le temps d'execution d'un coup est long. En effet, on remarque que le temps d'execution augmente factiorellement par apport à la profondeur souhaitée.D'où l'intérêt que nous avons porté à l'algorithme alpha-beta (Cf : \ref{alphabeta}).
+	\begin{figure}[!t]
+	    \caption{Temps d'éxecution de l'algorthme min-max avec un plateau 3x3}
+	    \label{TEAMM3x3}
+	    \includegraphics[scale=0.40]{tempsExecutionMinMax3x3.png}
+	\end{figure}
+     \begin{figure}[!t]
+     	    \caption{Temps d'éxecution de l'algorthme min-max avec un plateau 4x4}
+     	    \label{TEAMM4x4}
+     	    \includegraphics[scale=0.40]{tempsExecutionMinMax4x4.png}
+     \end{figure}
+	\begin{figure}[!t]
+    	    \caption{Temps d'éxecution de l'algorthme min-max avec un plateau 5x5}
+    	    \label{TEAMM5x5}
+    	    \includegraphics[scale=0.40]{tempsExecutionMinMax5x5.png}
+    	\end{figure}
 	
 	
+	\subsection{Taux de victoire des differents algorithmes}
+	Pour verifier l'efficacité de nos différents algorithmes, nous avons décidé de les faire s'affronter sur un grand nombre de parties. 
+	Ainsi nous avons obtenu les graphiques suivants (cf : ) 
+	Nous pouvons en conclure que l'algorithme min-max est le plus efficace devant le score-max qui lui-même devance le random. La logique est donc respecté.
+	De plus en confrontant les algorithmes les ains contre les autres on peut conclure que le fait d'être le premier joueur au Gomoku est un réel avantage.
+	\begin{figure}[!h]
+	    \caption{Taux de victoire du random contre le random}
+	    \label{TVRandomVSRandom}
+	     \includegraphics[scale=0.60]{TauxDeVictoireRandomVSRandom.png}
+    \end{figure}
+    \begin{figure}[!h]
+    	    \caption{Taux de victoire du random contre le MaxScore}
+    	    \label{TVRandomVMaxScore}
+    	     \includegraphics[scale=0.60]{TauxVictoireRandomVsMaxScore.png}
+    \end{figure}
+
 	
 
 \part{Manuel d'utilisation}
-	\chapter{Le développeur}
+	\section{Le développeur}
 	% --> Là on peut revenir sur le fait que notre code est bien divisé et que si une personne veut reprendre notre architecture et simplement créer une IA sans se préocuper de la création de l'ensemble du jeux, c'est très simple, il suffit de créer une classe qui extends de IA. 
 	% --> Pour lancer des parties qui se jouent seules il suffit de modifier dans Game.... Attention 
 	La structure de ce projet à été pensée de telle sorte à permettre à un développeur d'implémenter une nouvelle intelligence artificielle de jeu sans avoir à se préocuper de la partie de gestion des tours, des joueurs. Pour cela il lui suffit de créer une nouvelle classe fille de la classe IA. Il pourra bénéficier de toutes les fonctionnalités de test déjà mises en place.
 	
 	
 
-	\chapter{Le joueur}
+	\section{Le joueur}
 	% --> Il suffit de lancer le jeux et bim bam boum, il lui suffit de jouer
 	% --> A voir si on a le temps de revoir l'interface graphique pour permettre au joueur de choisir son nom, sa couleur, ainsi que l'IA qu'il affrontera
-	Pour le joueur il suffit de lancer le jeu, de taper son nom, de choisir sa couleur de pion et l'intelligence artificielle contre laquelle il veut jouer (random, max score ou min-max).
+	Pour le joueur il suffit de lancer le jeu à partir de son IDE de programation. 
 
 \part{Rapport d'activité}
 % Utilisation de git
@@ -139,7 +176,7 @@ Pour réaliser ce projet nous nous sommes servi de gitHub permettant de faire du
 \subsection{Algorithme min-max}
  Nous avons du faire un grand nombre de recherches et de tests afin de nous approprier les différents algorithmes et de les implémenter.
 Ainsi pour le min-max, nous avions, dans un premier temps, cloné autant de fois qu'il y a de coup à jouer le plateau de jeu. Cela entraine un temps d'exécution considérable car la complexité étant en O(n!), ce temps était inutilement allongé. Par la suite nous avons trouvé une solution pour simuler les différents coups, stocker la valeur et annuler le coup sur un seul plateau de jeu ce qui rendait le temps d'exécution bien plus convenable.(cf tests temps d'exécution).
-\subsection{Algorithme alpha-bêta}
+\subsection{Algorithme alpha-bêta} \label{alphabeta}
 Nous avons, suite à l'implémentation de l'algorithme min-max, essayé d'améliorer encore le temps d'exécution sans impacter le taux de victoire grâce à l'algorithme alpha-bêta dont le principe est le même que le min-max mais dont la différence réside dans le fait qu'il limite le nombre de cas testés dans l'arbre de jeu suivant ce principe : si le max du coup suivant est inférieur au min du coup courant alors cette branche ne sera pas explorée. Ainsi seulement les branches menant à une victoire potentielle seront testées et la complexité sera ainsi améliorée.
 Les résultats obtenus n'étant pas concluants nous avons décidé d'avorter cette partie du projet. 
 
