@@ -27,7 +27,7 @@ public class Game{
 
 
     public static void main(String[] args){
-        String pathname = Game.class.getResource("").toString() + "MinMaxVSMinMax-Dept1-5x5.csv";
+        String pathname = Game.class.getResource("").toString() + "MinMaxVSMinMax-Dept4-5x5.csv";
         pathname = pathname.substring(5, pathname.length());
         File file = new File(pathname);
         try {
@@ -39,7 +39,7 @@ public class Game{
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw)) {
             out.println("Player1, Player2,nbMovementPlayed,depth,winnerIndex,executionTimePlayer1,executionTimePlayer2");
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 1; i++) {
                 System.out.println("Jeux : "+i);
                 Player alexandre = new MinMaxScorePlayer("Alexandre", Color.BLUE);
                 Player jeremy = new MinMaxScorePlayer("Jérémy", Color.RED);

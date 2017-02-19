@@ -46,7 +46,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
                 			Le package \textit{board} est l'essence du jeux. En effet il contient la classe du même nom, \textit{Board}, ainsi que la classe \textit{Box}.
                 		\paragraph{La classe board}\label{classeBoard}
                			 Cette classe représente le plateau de jeux. Elle contient un tableau avec l'ensemble des cases (cf : \ref{classBox}), les deux joueurs et le nombre de pions qu'il faut aligner pour gagner.
-               			 De plus elle contient toutes les méthodes permettant l'évaluation de l'état du jeu à l'état courant. Par exemple les méthodes isFinished() et getNumberOfMove() permettent respectivement de
+               			 De plus elle contient toutes les méthodes permettant l'évaluation du plateau de jeu à l'état courant. Par exemple les méthodes isFinished() et getNumberOfMove() permettent respectivement de
                			 déterminer une victoire et le nombre de coups déjà joués. Le nombre de coups déjà joués peut être calculé car nous avons mis en place un historique des mouvements effectués
                			 par l'intermédiaire d'un tableau de "Movement" (cf : \ref{pckCore}).
                			 Par ailleurs cet historique nous permet d'annuler le dernier coup jusqu'à atteindre la "racine" de l'arbre de jeu.
@@ -74,8 +74,8 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 			\subsection{Le package principal}
 			Dans le "package principal", nous pouvons observer qu'il existe deux classes qui sont en dehors de tout package (Game et GameIHM).
 			Ces classes nous permettent l'execution du jeux dans deux version differentes.
-			La première version \textit{GameIHM} nous permet de proposer une interface graphique a nos utilisateurs.
-			La seconde version \textit{Game} nous a permit de réaliser des test (cf : \ref{fichierCSV}) et d'executer le script sans
+			La première version \textit{GameIHM} nous permet de proposer une interface graphique à nos utilisateurs.
+			La seconde version \textit{Game} nous a permis de réaliser des test (cf : \ref{fichierCSV}) et d'executer le script sans
 			interface homme machine (IHM) d'où l'importance de rendre le plateau de jeu totalement indépendant.
 			% --> Là on explique la classe Board, on passe très rapidement sur Game
 			
@@ -137,8 +137,8 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 	\subsection{Taux de victoire des differents algorithmes}
 	Pour verifier l'efficacité de nos différents algorithmes, nous avons décidé de les faire s'affronter sur un grand nombre de parties. 
 	Ainsi nous avons obtenu les graphiques suivants (cf : ) 
-	Nous pouvons en conclure que l'algorithme min-max est le plus efficace devant le score-max qui lui-même devance le random. La logique est donc respecté.
-	De plus en confrontant les algorithmes les ains contre les autres on peut conclure que le fait d'être le premier joueur au Gomoku est un réel avantage.
+	Nous pouvons en conclure que l'algorithme min-max est le plus efficace devant le score-max qui lui-même devance le random. La logique est donc respectée.
+	De plus en confrontant les algorithmes les uns contre les autres on peut conclure que le fait d'être le premier joueur au Gomoku est un réel avantage.
 	\begin{figure}[!h]
 	    \caption{Taux de victoire du random contre le random}
 	    \label{TVRandomVSRandom}
@@ -171,7 +171,7 @@ Nous avons choisi comme langage de programmation Java car celui-ci nous semblait
 % Parler d'une première version avec des clones, et expliquer que le temps etait beaucou beaucoup beaucoup trop long pour être convenable 
 Cette partie explique les différentes difficultés rencontrées ainsi que certains choix technologiques de notre part.
 \section{git}
-Pour réaliser ce projet nous nous sommes servi de gitHub permettant de faire du versionning et ainsi de rendre le travail plus efficace. Ainsi il est possible de voir les différentes évolutions du projet et de revenir en arrière en cas de besoin.
+Pour réaliser ce projet nous nous sommes servi de gitHub permettant de faire du versionning et ainsi de rendre le travail plus efficace. Il est en efffet possible de voir les différentes évolutions du projet et de revenir en arrière en cas de besoin.
 \section{problèmes rencontrés}
 \subsection{Algorithme min-max}
  Nous avons du faire un grand nombre de recherches et de tests afin de nous approprier les différents algorithmes et de les implémenter.
